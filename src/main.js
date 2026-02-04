@@ -1,32 +1,46 @@
+import './style.css';
+import { GridDistortion } from './GridDistortion.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
 import bgImage from './assets/background.png';
 
-// ... (imports)
+gsap.registerPlugin(ScrollTrigger);
 
-// ...
+// --- State Management ---
+const appState = {
+    currentPage: 'home',
+    lenis: null
+};
 
-// 2. Initialize Background
-const heroLinesContainer = document.getElementById('hero-lines');
-if (heroLinesContainer) {
-    new GridDistortion(heroLinesContainer, {
-        grid: 30,
-        mouse: 0.15,
-        strength: 0.15,
-        relaxation: 0.94,
-        imageSrc: bgImage
-    });
-}
+// --- Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initialize Smooth Scroll (Lenis)
+    initLenis();
 
-// 3. Setup Navigation
-setupNavigation();
+    // 2. Initialize Background
+    const heroLinesContainer = document.getElementById('hero-lines');
+    if (heroLinesContainer) {
+        new GridDistortion(heroLinesContainer, {
+            grid: 30,
+            mouse: 0.15,
+            strength: 0.15,
+            relaxation: 0.94,
+            imageSrc: bgImage
+        });
+    }
 
-// 4. Initial Animation
-animateEntry();
+    // 3. Setup Navigation
+    setupNavigation();
 
-// 5. Setup Scroll Animations
-setupScrollAnimations();
+    // 4. Initial Animation
+    animateEntry();
 
-// 6. Setup Registration Logic
-setupRegistration();
+    // 5. Setup Scroll Animations
+    setupScrollAnimations();
+
+    // 6. Setup Registration Logic
+    setupRegistration();
 });
 
 function initLenis() {
