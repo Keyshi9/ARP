@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mouse: 0.15,
             strength: 0.15,
             relaxation: 0.94,
-            imageSrc: '/background.png'
+            imageSrc: import.meta.env.BASE_URL + 'background.png'
         });
     }
 
